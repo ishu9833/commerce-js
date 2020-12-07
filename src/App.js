@@ -58,10 +58,11 @@ const App = () => {
             setOrder(incomingOrder)
             refresh()
         } catch (error) {
+            // const  newError = error.data.error.message
+            // setErrorMessage(newError);
             console.log(error)
-            // setErrorMessage(error.data.error.message);
         }
-    }
+    };
 
     useEffect(() => {
         fetchProducts();
@@ -83,14 +84,15 @@ const App = () => {
                         <Route exact path="/cart">
                             <Cart 
                                 cart={cart} 
-                                onUpdateCartQty={handleUpdateCartQty} 
-                                onRemoveFromCart={handleRemoveFromCart} 
-                                onEmptyCart={handleEmptyCart} />
+                                handleUpdateCartQty={handleUpdateCartQty} 
+                                handleRemoveFromCart={handleRemoveFromCart} 
+                                handleEmptyCart={handleEmptyCart} />
                         </Route>
                         <Route path="/checkout" exact>
                             <Checkout 
                                 cart={cart} 
                                 order={order} 
+                                handleEmptyCart={handleEmptyCart}
                                 onCaptureCheckout={handleCaptureCheckout} 
                                 error={errorMessage} />
                         </Route>
